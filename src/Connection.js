@@ -36,7 +36,7 @@ function Connection(){
             self.socket.emit(message, data);
         },
         on(message, callback){
-            self.socket.on(message, cb);
+            self.socket.on(message, callback);
         },
         async waitEvent(message, timeout = 15000) {
             return new Promise((resolve, reject) => {

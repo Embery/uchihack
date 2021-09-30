@@ -1,0 +1,13 @@
+@import '~antd/dist/antd.css';
+.App{
+    font-size: 120%;
+    
+}
+.App > * {
+    padding: .5em;
+}
+header{
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    grid-column-gap: 16px;
+}
