@@ -1,7 +1,11 @@
 import Connection from "../Connection"
 import { action, extendObservable } from "mobx";
 import SelectedPage from "./SelectedPage";
+import Questions from "./Questions";
 import React from "react";
+import User from "./User";
+
+const RegistryCtx = React.createContext();
 
 function Registry(){
     const self = {
@@ -16,9 +20,11 @@ function Registry(){
     };
     self.actions = {
         init: action(() => {
-            //self.connection = Connection().init();
+            self.connection = Connection().init();
             self.stores = {
-                selectedPage: SelectedPage()
+                selectedPage: SelectedPage(),
+                user: User(self.connection),
+                questions: Questions(self.connection),
             };
             self.initialized = true;
         })
@@ -26,7 +32,5 @@ function Registry(){
 
     return extendObservable(self, { stores: [], initialized: false });
 }
-
-const RegistryCtx = React.createContext();
 
 export {Registry as default, RegistryCtx}

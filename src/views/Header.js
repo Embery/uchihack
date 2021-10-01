@@ -5,11 +5,11 @@ const { SubMenu } = Menu;
 
 const Header = observer(({store}) => {
     const pageStore = store.getStore('selectedPage');
-    //const userInfo = store.getStore('user');
-    const userInfo = {login: true, nickname:'ололоша'};
+    const userInfo = store.getStore('user');
+    
     const keysForGuests = ['home', 'questions', 'login', 'register'];
     const keysForUsers = ['home', 'questions', 'avatar', 'profile',];
-    const keys = userInfo.login ? keysForUsers : keysForGuests;
+    const keys = userInfo.isLoggedIn ? keysForUsers : keysForGuests;
     const menuItems = {
         home: 
             <Menu.Item key="home">
@@ -21,7 +21,7 @@ const Header = observer(({store}) => {
             </Menu.Item>,
         avatar: 
             <Menu.Item disabled="true"  style={{padding:0}} key="avatar">
-                <img src="https://via.placeholder.com/150" style={{maxWidth:'50px', maxHeight:'50px'}}/>
+                <img src={userInfo.avatar} alt="avatar" style={{maxWidth:'50px', maxHeight:'50px'}}/>
             </Menu.Item>,
         profile:
             <SubMenu key="SubMenu" title={userInfo.nickname} key="profile">
@@ -48,11 +48,11 @@ const Header = observer(({store}) => {
                 onClick={(e)=>{
                     const key = e.key;
                     if(key === 'exit'){
-                        //exit
+                        userInfo.actions.logout();
                         return;
                     }
                     if(key === 'login'){
-                        //login
+                        userInfo.actions.login("ololo","123123");
                         return;
                     }
                     pageStore.actions.setSelected(e.key);
