@@ -1,7 +1,9 @@
 @import '~antd/dist/antd.css';
 .App{
     font-size: 120%;
-    
+    .register-form-button{
+        width: 100%;
+    }
 }
 .App > * {
     padding: .5em;

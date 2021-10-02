@@ -64,8 +64,7 @@ const QuestionsScreen = observer(props => {
             onRow={(record) => {
                 return {
                     onClick: event => {
-                        console.log(record);
-                        debugger
+                        registry.getStore('selectedPage').actions.setSelected('question', {record})
                     }
                 }
             }}

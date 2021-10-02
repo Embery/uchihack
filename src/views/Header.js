@@ -33,7 +33,7 @@ const Header = observer(({store}) => {
                 Логин
             </Menu.Item>,
         register:
-            <Menu.Item key="exit">
+            <Menu.Item key="register">
                 Регистрация
             </Menu.Item>
     }

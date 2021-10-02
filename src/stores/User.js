@@ -9,6 +9,7 @@ const User = (connection) => {
         setNickname: action(nickname => self.nickname = nickname),
         setIsLoggedIn: action(value => self.isLoggedIn = value),
         setAvatar: action(avatar => self.avatar = avatar),
+        setUserId: action(user_id => self.user_id = user_id),
         login: action(async (login, password)=>{
             /**
              * вот это вообще плохо, что в незашифрованном виде кидается, но ведь
@@ -21,10 +22,12 @@ const User = (connection) => {
             const response = {
                 nickname: 'Ололоша',
                 session: 'asdasd',
+                user_id: 2,
                 avatar: "https://via.placeholder.com/150"
             };
             connection.setSession(response.session);
             self.actions.setAvatar(response.avatar);
+            self.actions.setUserId(response.user_id);
             self.actions.setNickname(response.nickname);
             self.actions.setIsLoggedIn(true);
         }),
