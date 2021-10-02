@@ -68,5 +68,5 @@ composer install
 
 
 ### Разработчики
-- Ромашкина Светлана Алексеевна (https://t.me/test@@esterelle)
-- Типсин Евгений Андреевич (https://t.me/test@@t1ps1n)
+- Ромашкина Светлана Алексеевна (https://t.me/test@esterelle)
+- Типсин Евгений Андреевич (https://t.me/test@t1ps1n)
