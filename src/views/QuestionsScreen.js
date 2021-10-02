@@ -7,6 +7,7 @@ import { RegistryCtx } from "../stores/Registry";
 const QuestionsScreen = observer(props => {
     const registry = useContext(RegistryCtx);
     const questionsStore = registry.getStore('questions');
+    const categories = registry.getStore('categories');
     const {questions, total, isLoading, isLoaded} = questionsStore;
     const [page, setPage] = useState(1);
     const columns = [
@@ -89,7 +90,7 @@ const QuestionsScreen = observer(props => {
             }
             title={() => <div>
                 <h2>Вопросы</h2>
-                <QuestionsToolbar store={questionsStore} />
+                <QuestionsToolbar store={questionsStore} categoriesStore={categories} />
             </div>}
         />
     );

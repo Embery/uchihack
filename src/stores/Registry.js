@@ -1,9 +1,10 @@
-import Connection from "../Connection"
+import Connection from "../utils/Connection"
 import { action, extendObservable } from "mobx";
 import SelectedPage from "./SelectedPage";
 import Questions from "./Questions";
 import React from "react";
 import User from "./User";
+import Categories from "./Categories";
 
 const RegistryCtx = React.createContext();
 
@@ -24,6 +25,7 @@ function Registry(){
             self.stores = {
                 selectedPage: SelectedPage(),
                 user: User(self.connection),
+                categories: Categories(self.connection),
                 questions: Questions(self.connection),
             };
             self.initialized = true;

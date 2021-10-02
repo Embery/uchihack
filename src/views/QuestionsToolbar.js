@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { Form, Row, Col, Input, Button, DatePicker } from 'antd';
+import React from 'react';
+import { observer } from "mobx-react";
+import { Form, Row, Col, Input, Button, DatePicker, TreeSelect } from 'antd';
 
-const QuestionsToolbar = (props) => {
-    const {store} = props;
+const QuestionsToolbar = observer((props) => {
+    const {store, categoriesStore} = props;
     const [form] = Form.useForm();
+    const {isLoaded, isLoading, categories} = categoriesStore;
+    const {getCategories} = categoriesStore.actions;
+    if(!isLoaded && !isLoading) getCategories();
     const formSuccess = (values, store) => {
         Object.keys(values).forEach(key=>{
             if(key!=="similar") {
@@ -51,12 +55,23 @@ const QuestionsToolbar = (props) => {
                     <DatePicker placeholder="Начало" />
                 </Form.Item>
             </Col>
-            <Col span={3}>
+            <Col span={2}>
                 <Form.Item name="updated_lt">
                     <DatePicker placeholder="Конец" />
                 </Form.Item>
             </Col>
-            <Col span={7} style={{textAlign:'right'}}>
+            <Col span={3}>
+                <Form.Item name="category_id">
+                    <TreeSelect
+                        style={{ width: '100%' }}
+                        dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                        treeData={categories}
+                        placeholder="Тема"
+                        treeDefaultExpandAll
+                    />
+                </Form.Item>
+            </Col>
+            <Col span={5} style={{textAlign:'right'}}>
                 <Button type="primary" htmlType="submit">
                     Искать
                 </Button>
@@ -73,5 +88,5 @@ const QuestionsToolbar = (props) => {
         </Row>
         </Form>
     );
-}
+});
 export default QuestionsToolbar;
