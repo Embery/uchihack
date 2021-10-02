@@ -13,7 +13,7 @@
 -	фича-3;
 
 ### Основной стек технологий:
--	Frontend: ...
+-	Frontend: React, MobX
 -	Backend: Python, PostgreSQL, Docker
 
 ## Демо
