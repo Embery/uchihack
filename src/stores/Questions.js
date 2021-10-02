@@ -27,6 +27,8 @@ const Questions = (connection) => {
                     url: `https://uchi-hack.herokuapp.com/question/${exact?'list':'similar'}`,
                     params: exact? {...self.filters} : [self.filters.name || '']
                 };
+                requestConfig.params.limit=pageSize;
+                requestConfig.params.offset=pageSize * (page - 1);
                 
                 const responseObject = await connection.request(requestConfig);
                 const response = await responseObject.json();
