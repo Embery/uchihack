@@ -56,82 +56,22 @@ const QuestionsToolbar = (props) => {
                     <DatePicker placeholder="Конец" />
                 </Form.Item>
             </Col>
-        </Row>
-        <Row>
-            <Col span={24} style={{ textAlign: 'right' }}>
-            <Button type="primary" htmlType="submit">
-                Search
-            </Button>
-            <Button
-                style={{ margin: '0 8px' }}
-                onClick={() => {
-                form.resetFields();
-                form.submit();
-                }}
-            >
-                Clear
-            </Button>
+            <Col span={7} style={{textAlign:'right'}}>
+                <Button type="primary" htmlType="submit">
+                    Искать
+                </Button>
+                <Button
+                    style={{ margin: '0 8px' }}
+                    onClick={() => {
+                    form.resetFields();
+                    form.submit();
+                    }}
+                >
+                    Очистить фильтры
+                </Button>
             </Col>
         </Row>
         </Form>
     );
 }
-//import { Input, Form, InputNumber } from 'antd';
-
-// const { Search } = Input;
-// const searchHandler = (value, property, store) => {
-//     if(value) store.addFilter(property, value);
-//     else store.removeFilter(property);
-//     store.actions.getQuestions();
-// }
-
-// const formSuccess = (values, store) => {
-//     Object.keys(values).forEach(key=>{
-//         if(key!=="similar") {
-//             if(values[key]) store.addFilter(key, values[key]);
-//             else store.removeFilter(key);
-//         }
-//     });
-//     if(!values.similar){
-//         store.actions.getQuestions();
-//     }
-//     else {
-//         //getExactQuestions()
-//     }
-// }
-
-// const QuestionsToolbar = (props) => {
-//     const {store} = props;
-//     return(
-//         <Form
-//             layout="inline"
-//             onFinish={values=>formSuccess(values, store)}
-//         >
-//             <Form.Item>
-//                 <Input
-//                     placeholder="Название вопроса"
-//                 />
-//                 {/* <Search 
-//                     placeholder="Название вопроса" 
-//                     onSearch={(e) => searchHandler(e, 'name', store)} 
-//                     enterButton 
-//                 /> */}
-//             </Form.Item>
-
-//             <Form.Item
-//                 rules={[
-//                     {
-//                         type: 'number',
-//                         min: 0,
-//                     },
-//                 ]}
-//             >
-//                 <InputNumber 
-//                     placeholder="#"
-//                 />
-//             </Form.Item>
-//         </Form>
-//     );
-// }
-
 export default QuestionsToolbar;

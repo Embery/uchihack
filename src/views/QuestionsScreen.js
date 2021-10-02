@@ -84,7 +84,7 @@ const QuestionsScreen = observer(props => {
                 <Button onClick={async ()=>{
                     await questionsStore.actions.getQuestions(page);
                 }}>
-                    Refresh
+                    Обновить
                 </Button>
             }
             title={() => <div>
