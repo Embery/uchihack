@@ -1,4 +1,5 @@
-import { Table, Button } from 'antd';
+import { Table, Button} from 'antd';
+import QuestionsToolbar from './QuestionsToolbar';
 import { observer } from "mobx-react";
 import React, {useContext, useState} from 'react';
 import { RegistryCtx } from "../stores/Registry";
@@ -15,20 +16,40 @@ const QuestionsScreen = observer(props => {
         },
         {
             title: 'Название',
-            dataIndex: 'name'
+            dataIndex: 'name',
+        },
+        {
+            title: 'Тема',
+            dataIndex: 'category_name'
         },
         {
             title: 'Создан',
             dataIndex: 'created',
             render: value => {
+                if(!value) return '';
                 const date = new Date(value);
                 return date.toLocaleString('ru');
             }
-
+        },
+        {
+            title: 'Изменен',
+            dataIndex: 'updated',
+            render: value => {
+                if(!value) return '';
+                const date = new Date(value);
+                return date.toLocaleString('ru');
+            }
         },
         {
             title: 'Баллы',
             dataIndex: 'points'
+        },
+        {
+            title: "Автор",
+            dataIndex: "user_name",
+            render: (value, record) => {
+                return (value || '') + ' ' + (record.user_surname || '');
+            }
         }
     ];
     const {getQuestions} = questionsStore.actions;
@@ -40,6 +61,14 @@ const QuestionsScreen = observer(props => {
             size="middle"
             rowKey="id" 
             loading={isLoading}
+            onRow={(record) => {
+                return {
+                    onClick: event => {
+                        console.log(record);
+                        debugger
+                    }
+                }
+            }}
             pagination={
                 {
                     position: ['none', 'bottomCenter'],  
@@ -59,7 +88,10 @@ const QuestionsScreen = observer(props => {
                     Refresh
                 </Button>
             }
-            title={() => 'Вопросы'}
+            title={() => <div>
+                <h2>Вопросы</h2>
+                <QuestionsToolbar store={questionsStore} />
+            </div>}
         />
     );
 });
