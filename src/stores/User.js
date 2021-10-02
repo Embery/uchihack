@@ -11,24 +11,22 @@ const User = (connection) => {
         setAvatar: action(avatar => self.avatar = avatar),
         setUserId: action(user_id => self.user_id = user_id),
         login: action(async (login, password)=>{
-            /**
-             * вот это вообще плохо, что в незашифрованном виде кидается, но ведь
-             * будет https же да?
-             */
-            // const response = await connection.request({message:'login', data: {login, password}}, {
-            //     needResponse: true,
-            //     responseMessage: 'login'
-            // })
-            const response = {
-                nickname: 'Ололоша',
-                session: 'asdasd',
-                user_id: 2,
-                avatar: "https://via.placeholder.com/150"
-            };
-            connection.setSession(response.session);
-            self.actions.setAvatar(response.avatar);
-            self.actions.setUserId(response.user_id);
-            self.actions.setNickname(response.nickname);
+            const response = await connection.request({
+                params:{
+                    login, password
+                },
+                url: 'https://uchi-hack.herokuapp.com/user/login'
+            })
+            const json = await response.json();
+            const data = json.result;
+            if(!json.success){
+                throw new Error(data.error_message)
+            }
+            connection.setSession(data.session_id);
+            self.actions.setAvatar(data.avatar || "https://via.placeholder.com/150");
+            self.actions.setUserId(data.id);
+            self.actions.setNickname(data.login);
+            self.info = data;
             self.actions.setIsLoggedIn(true);
         }),
         logout: action(async () => {
