@@ -14,7 +14,7 @@
 
 ### Основной стек технологий:
 -	Frontend: ...
--	Backend: Python, Docker, PostgreSQL
+-	Backend: Python, PostgreSQL, Docker
 
 ## Демо
 
@@ -22,8 +22,8 @@
 ссылка
 
 ##### Доступ для тестового пользователя: 
-- email:login (указать логин), 
-- пароль: password (указать пароль)
+- `email`: hack@uchi.ru 
+- `password`: hack2021
 
 ##### Скринкаст доступен по адресу: 
 ссылка
@@ -35,22 +35,21 @@
 - `PORT` - порт сервиса (по умолчанию `8080`)
 - `DATABASE_URL` - DNS PostreSQL (формат: `postgresql://user:password@host:port/dbname`)
 
-
-- развертывание сервиса производится на debian-like linux (debian 9+);
-- требуется установленный web-сервер с поддержкой PHP(версия 7.4+) интерпретации (apache, nginx);
-- требуется установленная СУБД MariaDB (версия 10+);
-- требуется установленный пакет name1 для работы с...;
+- развертывание сервиса производится путем запуска docker контейнера
+- все зависимости устанавливаются при сборке docker образа
+- работа сервиса проверялась на docker версии `Docker version 20.10.8, build 3967b7d`
+- требуется установленная СУБД PostgeSQL (9.6+)
 
 ### УСТАНОВКА, НАСТРОЙКА
-Установка пакета name
-Выполните
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install name1
-sudo apt-get install mariadb-client mariadb-server
-git clone https://github.com/Sinclear/default_readme
-cd default_readme
-...
+
+Сборка docker образа:
+```
+docker build -t uchi-hack -f Dockerfile .
+```
+Запуск docker образа:
+```
+docker run -p 8080:8080 -t test-uchi
+```
 
 ### База данных
 Необходимо создать пустую базу данных, а подключение к базе прописать в переменную окружения `DATABASE_URL`
@@ -62,9 +61,6 @@ alembic upgrade head
 ```
 
 ### Установка зависимостей проекта
-Установка зависимостей осуществляется с помощью Composer. Если у вас его нет вы можете установить его по инструкции на getcomposer.org.
-После этого выполнить команду в директории проекта:
-composer install
 
 
 ### Разработчики
