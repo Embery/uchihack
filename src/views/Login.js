@@ -12,6 +12,10 @@ const Login = () => {
         try{
             await user.actions.login(values.username, values.password);
             page.actions.setSelected('questions');
+            ReactDOM.render(
+                null, 
+                document.getElementById('notification')
+            );
         } 
         catch(e) {
             ReactDOM.render(
