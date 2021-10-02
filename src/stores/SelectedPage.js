@@ -1,5 +1,6 @@
 import { action, extendObservable } from "mobx";
 import HomeScreen from "../views/HomeScreen";
+import Login from "../views/Login";
 import QuestionPage from "../views/QuestionPage";
 import QuestionsScreen from "../views/QuestionsScreen";
 import Registration from "../views/Registration";
@@ -9,7 +10,8 @@ const SelectedPage = () => {
         home: <HomeScreen/>,
         questions: <QuestionsScreen/>,
         question: <QuestionPage/>,
-        register: <Registration/>
+        register: <Registration/>,
+        login: <Login/>
     }
     const self = {
     }

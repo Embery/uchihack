@@ -51,10 +51,6 @@ const Header = observer(({store}) => {
                         userInfo.actions.logout();
                         return;
                     }
-                    if(key === 'login'){
-                        userInfo.actions.login("ololo","123123");
-                        return;
-                    }
                     pageStore.actions.setSelected(e.key);
                 }} 
                 selectedKeys={[pageStore.selected]} 

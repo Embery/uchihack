@@ -14,7 +14,6 @@ const Registration = (props) => {
     const [form] = Form.useForm();
 
     const onFinish = async (values) => {
-        console.log('Received values of form: ', values);
         const copy = Object.assign({}, values);
         delete copy.confirm
         try{

@@ -13,13 +13,16 @@ function Connection(){
          * поэтому я не буду паранойить по поводу того, что сессия в ЛС хранится
          */
         getSession(){
-            localStorage.getItem('session')
+            const cookies = document.cookie.split(';');
+            return cookies.find(elem=>elem.startsWith("session_id"))
         },
         setSession(session){
             if(session.length){
-                localStorage.setItem('session', session);
+                document.cookie = "session_id=" + session;
             } else {
-                localStorage.removeItem('session');
+                const cookie_date = new Date ( );  // Текущая дата и время
+                cookie_date.setTime ( cookie_date.getTime() - 1 );
+                document.cookie = "session_id" + "=; expires=" + cookie_date.toGMTString();
             }
         },
         /**
