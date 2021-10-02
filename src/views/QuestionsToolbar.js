@@ -66,6 +66,7 @@ const QuestionsToolbar = (props) => {
                 style={{ margin: '0 8px' }}
                 onClick={() => {
                 form.resetFields();
+                form.submit();
                 }}
             >
                 Clear
