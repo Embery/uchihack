@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/uchihack/static/css/main.0f9464f0.chunk.css",
-    "main.js": "/uchihack/static/js/main.3b31b5d8.chunk.js",
-    "main.js.map": "/uchihack/static/js/main.3b31b5d8.chunk.js.map",
+    "main.js": "/uchihack/static/js/main.fc6c5039.chunk.js",
+    "main.js.map": "/uchihack/static/js/main.fc6c5039.chunk.js.map",
     "runtime-main.js": "/uchihack/static/js/runtime-main.2d65b268.js",
     "runtime-main.js.map": "/uchihack/static/js/runtime-main.2d65b268.js.map",
     "static/css/2.d26d1254.chunk.css": "/uchihack/static/css/2.d26d1254.chunk.css",
-    "static/js/2.dc4b87da.chunk.js": "/uchihack/static/js/2.dc4b87da.chunk.js",
-    "static/js/2.dc4b87da.chunk.js.map": "/uchihack/static/js/2.dc4b87da.chunk.js.map",
+    "static/js/2.41cdc611.chunk.js": "/uchihack/static/js/2.41cdc611.chunk.js",
+    "static/js/2.41cdc611.chunk.js.map": "/uchihack/static/js/2.41cdc611.chunk.js.map",
     "static/js/3.708e15ac.chunk.js": "/uchihack/static/js/3.708e15ac.chunk.js",
     "static/js/3.708e15ac.chunk.js.map": "/uchihack/static/js/3.708e15ac.chunk.js.map",
     "index.html": "/uchihack/index.html",
     "static/css/2.d26d1254.chunk.css.map": "/uchihack/static/css/2.d26d1254.chunk.css.map",
     "static/css/main.0f9464f0.chunk.css.map": "/uchihack/static/css/main.0f9464f0.chunk.css.map",
-    "static/js/2.dc4b87da.chunk.js.LICENSE.txt": "/uchihack/static/js/2.dc4b87da.chunk.js.LICENSE.txt"
+    "static/js/2.41cdc611.chunk.js.LICENSE.txt": "/uchihack/static/js/2.41cdc611.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2d65b268.js",
     "static/css/2.d26d1254.chunk.css",
-    "static/js/2.dc4b87da.chunk.js",
+    "static/js/2.41cdc611.chunk.js",
     "static/css/main.0f9464f0.chunk.css",
-    "static/js/main.3b31b5d8.chunk.js"
+    "static/js/main.fc6c5039.chunk.js"
   ]
 }
