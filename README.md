@@ -31,7 +31,7 @@ https://embery.github.io/uchihack/
 - `password`: hack2021
 
 ##### Скринкаст доступен по адресу: 
-ссылка
+https://drive.google.com/file/d/1paeunKNPpU0qcTFxl6M7KvI_I1EVrJVQ/view?usp=sharing
 
 
 ## НЕОБХОДИМЫЕ УСЛОВИЯ ДЛЯ РАБОТЫ ПРИЛОЖЕНИЯ
