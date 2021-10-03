@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.eb2c17b7.chunk.css",
-    "main.js": "/static/js/main.7485c648.chunk.js",
-    "main.js.map": "/static/js/main.7485c648.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.f6c325dc.js",
-    "runtime-main.js.map": "/static/js/runtime-main.f6c325dc.js.map",
-    "static/css/2.d26d1254.chunk.css": "/static/css/2.d26d1254.chunk.css",
-    "static/js/2.f7d056c5.chunk.js": "/static/js/2.f7d056c5.chunk.js",
-    "static/js/2.f7d056c5.chunk.js.map": "/static/js/2.f7d056c5.chunk.js.map",
-    "static/js/3.26473741.chunk.js": "/static/js/3.26473741.chunk.js",
-    "static/js/3.26473741.chunk.js.map": "/static/js/3.26473741.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.d26d1254.chunk.css.map": "/static/css/2.d26d1254.chunk.css.map",
-    "static/css/main.eb2c17b7.chunk.css.map": "/static/css/main.eb2c17b7.chunk.css.map",
-    "static/js/2.f7d056c5.chunk.js.LICENSE.txt": "/static/js/2.f7d056c5.chunk.js.LICENSE.txt"
+    "main.css": "/uchihack/static/css/main.eb2c17b7.chunk.css",
+    "main.js": "/uchihack/static/js/main.7485c648.chunk.js",
+    "main.js.map": "/uchihack/static/js/main.7485c648.chunk.js.map",
+    "runtime-main.js": "/uchihack/static/js/runtime-main.636aac92.js",
+    "runtime-main.js.map": "/uchihack/static/js/runtime-main.636aac92.js.map",
+    "static/css/2.d26d1254.chunk.css": "/uchihack/static/css/2.d26d1254.chunk.css",
+    "static/js/2.0cfde674.chunk.js": "/uchihack/static/js/2.0cfde674.chunk.js",
+    "static/js/2.0cfde674.chunk.js.map": "/uchihack/static/js/2.0cfde674.chunk.js.map",
+    "static/js/3.26473741.chunk.js": "/uchihack/static/js/3.26473741.chunk.js",
+    "static/js/3.26473741.chunk.js.map": "/uchihack/static/js/3.26473741.chunk.js.map",
+    "index.html": "/uchihack/index.html",
+    "static/css/2.d26d1254.chunk.css.map": "/uchihack/static/css/2.d26d1254.chunk.css.map",
+    "static/css/main.eb2c17b7.chunk.css.map": "/uchihack/static/css/main.eb2c17b7.chunk.css.map",
+    "static/js/2.0cfde674.chunk.js.LICENSE.txt": "/uchihack/static/js/2.0cfde674.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.f6c325dc.js",
+    "static/js/runtime-main.636aac92.js",
     "static/css/2.d26d1254.chunk.css",
-    "static/js/2.f7d056c5.chunk.js",
+    "static/js/2.0cfde674.chunk.js",
     "static/css/main.eb2c17b7.chunk.css",
     "static/js/main.7485c648.chunk.js"
   ]
