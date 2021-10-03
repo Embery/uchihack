@@ -56,11 +56,15 @@ const QuestionsToolbar = observer((props) => {
                                         <Checkbox >Похожие</Checkbox>
                                     </Form.Item>
                                 </Col>
-                                <Col style={{margin:"0 0 0 1em"}}>
-                                    <Form.Item name="mine" valuePropName="checked">
-                                        <Checkbox >Мои</Checkbox>
-                                    </Form.Item>
-                                </Col>
+                                {(()=>{
+                                    if(uid) return (
+                                        <Col style={{margin:"0 0 0 1em"}}>
+                                            <Form.Item name="mine" valuePropName="checked">
+                                                <Checkbox >Мои</Checkbox>
+                                            </Form.Item>
+                                        </Col>
+                                    )
+                                })()}
                             </Row>
                         </Form.Item>
                         <Form.Item>
