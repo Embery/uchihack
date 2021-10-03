@@ -162,7 +162,7 @@ const QuestionPage = observer((props) => {
             );
         })()}
         {(()=>{
-            if(record && userInfo.user_id){
+            if(record && userInfo.user_id && record.status_name === "Новый"){
                 return (
                     <Form
                         form={answer}
