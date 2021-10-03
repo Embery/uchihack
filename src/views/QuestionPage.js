@@ -1,5 +1,9 @@
-import { DatePicker, Form, Input, TreeSelect, Button} from 'antd';
+import { 
+    DatePicker, Form, Input, TreeSelect, Button, Comment, Tooltip
+} from 'antd';
 import moment from 'moment';
+import { observer } from "mobx-react";
+import Answers from './Answers';
 import React, {useContext} from 'react';
 import { RegistryCtx } from "../stores/Registry";
 
@@ -13,14 +17,19 @@ const removeEmptyDates = (record) => {
     else copy.updated = moment(copy.updated);
     return copy;
 }
-const QuestionPage = (props) => {
+const QuestionPage = observer((props) => {
     const {record} = props;
     const registry = useContext(RegistryCtx);
     const userInfo = registry.getStore('user');
     const questions = registry.getStore('questions');
+    const answers = registry.getStore('answers');
 
     const isMine = !record || (record.user_id === userInfo.user_id);
+    if(record && record.id !== answers.question) {
+        answers.addFilter('question_id', record.id)
+    }
     const [form] = Form.useForm();
+    const [answer] = Form.useForm();
 
     const categoriesStore = registry.getStore('categories');
     const {isLoaded, isLoading, categories} = categoriesStore;
@@ -37,6 +46,7 @@ const QuestionPage = (props) => {
         form.setFieldsValue(result[0])
     }
     return (
+        <div>
         <fieldset disabled={!isMine}>
             <Form 
                 form={form} 
@@ -93,15 +103,17 @@ const QuestionPage = (props) => {
                 <Form.Item name="body" label="Вопрос" rules={[{ required: true }]}>
                     <TextArea rows={10}/>
                 </Form.Item>
-                <Form.Item wrapperCol={{ offset: 2, span: 18 }} className="question-form-footer-container">
                 {
                     (()=>{
                         if(!record) return (
+                            <Form.Item wrapperCol={{ offset: 2, span: 18 }} className="question-form-footer-container">
                             <Button type="primary" htmlType="submit" className="question-form-button">
                                 Задать вопрос
                             </Button>
+                            </Form.Item>
                         )
                         if(isMine && record.status_name === 'Новый') return (
+                            <Form.Item wrapperCol={{ offset: 2, span: 18 }} className="question-form-footer-container">
                             <div>
                                 <Button type="primary" className="question-form-button"
                                     onClick={async ()=>{
@@ -126,13 +138,62 @@ const QuestionPage = (props) => {
                                     Закрыть вопрос
                                 </Button>
                             </div>
+                            </Form.Item>
                         )
                     })()
                 }
-                </Form.Item>
             </Form>
         </fieldset>
-    );
-}
+        {(()=>{
+            if(record) return(
+                <Form 
+                    style={{padding: '1em'}}
+                    labelCol={{
+                        span: 2,
+                    }}
+                    wrapperCol={{
+                        span: 18,
+                    }}
+                >
+                    <Form.Item label="Ответы">
+                        <Answers record={record} answers={answers}/>
+                    </Form.Item>
+                </Form>
+            );
+        })()}
+        {(()=>{
+            if(record && userInfo.user_id){
+                return (
+                    <Form
+                        form={answer}
+                        style={{padding: '1em'}}
+                        labelCol={{
+                            span: 2,
+                        }}
+                        wrapperCol={{
+                            span: 18,
+                        }}
+                    >
+                        <Form.Item name="body" label="Ответ">
+                            <TextArea rows={5} />
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" className="question-form-button"
+                                onClick={async ()=>{
+                                    const values = answer.getFieldsValue();
+                                    values.question_id = record.id;
+                                    values.user_id = userInfo.user_id;
+                                    const result = await answers.actions.createAnswer(values);
+                                    await answers.actions.getAnswers();
+                                }}
+                            >Ответить</Button>
+                        </Form.Item>
+                    </Form>
+                )
+            }
+        })()}
+        </div>
+   );
+});
 
 export default QuestionPage;

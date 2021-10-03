@@ -2,6 +2,7 @@ import Connection from "../utils/Connection"
 import { action, extendObservable } from "mobx";
 import SelectedPage from "./SelectedPage";
 import Questions from "./Questions";
+import Answers from "./Answers";
 import React from "react";
 import User from "./User";
 import Categories from "./Categories";
@@ -27,6 +28,7 @@ function Registry(){
                 user: User(self.connection),
                 categories: Categories(self.connection),
                 questions: Questions(self.connection),
+                answers: Answers(self.connection)
             };
             self.initialized = true;
         })
