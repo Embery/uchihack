@@ -50,11 +50,12 @@ async def create_question(request: Request, data: RequestCreateQuestion):
 
     for question in data.params:
         query = f"""
-            INSERT INTO questions (name, body, category_id, user_id, created)
+            INSERT INTO questions (name, body, category_id, user_id, status_id, created)
             VALUES ('{question.name}', 
                     '{question.body}', 
                      {question.category_id}, 
                      {question.user_id}, 
+                     1,
                     '{dt.now().strftime("%Y-%m-%d %H:%M:%S")}')
             RETURNING *;
         """

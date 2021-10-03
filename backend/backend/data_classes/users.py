@@ -9,7 +9,9 @@ __all__ = ('RequestLogin', 'ResponseLogin',
            'RequestCreateUser', 'ResponseCreateUser',
            'RequestReadUser', 'ResponseReadUser',
            'RequestUpdateUser', 'ResponseUpdateUser',
-           'RequestDeleteUser', 'ResponseDeleteUser')
+           'RequestDeleteUser', 'ResponseDeleteUser',
+           'RequestLogout', 'ResponseLogout',
+           'RequestIsLoggedIn', 'ResponseIsLoggedIn')
 
 
 class User(BaseClass):
@@ -107,3 +109,23 @@ class RequestDeleteUser(Request):
 
 class ResponseDeleteUser(ResponseSuccess):
     pass
+
+
+#
+
+class RequestLogout(Request):
+    params: List[str] = Field(title="Список идентификаторов пользователей")
+
+
+class ResponseLogout(ResponseSuccess):
+    pass
+
+
+#
+
+class RequestIsLoggedIn(Request):
+    params: List[str] = Field(title="Список идентификаторов пользователей")
+
+
+class ResponseIsLoggedIn(ResponseSuccess):
+    result: List[User] = Field(title="Список пользователей")
