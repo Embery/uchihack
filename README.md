@@ -16,6 +16,7 @@
 -	Frontend: React, MobX, Ant Design
 -	Backend: Python, PostgreSQL, Docker
 
+
 ## Демо
 
 ##### Приложение доступно по адресу:
@@ -30,18 +31,16 @@
 
 
 ## НЕОБХОДИМЫЕ УСЛОВИЯ ДЛЯ РАБОТЫ ПРИЛОЖЕНИЯ
-
-### Переменные окружения
-- `PORT` - порт сервиса (по умолчанию `8080`)
-- `DATABASE_URL` - DNS PostreSQL (формат: `postgresql://user:password@host:port/dbname`)
-
 - развертывание сервиса производится путем запуска docker контейнера
 - все зависимости устанавливаются при сборке docker образа
 - работа сервиса проверялась на docker версии `Docker version 20.10.8, build 3967b7d`
 - требуется установленная СУБД PostgeSQL (9.6+)
 
-### УСТАНОВКА, НАСТРОЙКА
+### Переменные окружения
+- `PORT` - порт сервиса (по умолчанию `8080`)
+- `DATABASE_URL` - DNS PostreSQL (формат: `postgresql://user:password@host:port/dbname`)
 
+### УСТАНОВКА, НАСТРОЙКА
 Сборка docker образа:
 ```
 docker build -t uchi-hack -f Dockerfile .
@@ -60,9 +59,7 @@ docker run -p 8080:8080 -t test-uchi
 alembic upgrade head
 ```
 
-### Установка зависимостей проекта
 
-
-### Разработчики
+## Разработчики
 - Ромашкина Светлана Алексеевна (https://t.me/test@esterelle)
 - Типсин Евгений Андреевич (https://t.me/test@t1ps1n)
