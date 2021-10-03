@@ -18,7 +18,7 @@ const User = (connection) => {
         setUserId: action(user_id => self.user_id = user_id),
         isLoggedIn: action(async ()=>{
             const response = await connection.request({
-                params:[connection.getSession()],
+                params:[connection.getSession().split('=')[1]],
                 url: 'https://uchi-hack.herokuapp.com/user/isLoggedIn'
             })
             const json = await response.json();
