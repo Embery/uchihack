@@ -51,6 +51,10 @@ const Header = observer(({store}) => {
                         userInfo.actions.logout();
                         return;
                     }
+                    if(key === 'profileEdit'){
+                        pageStore.actions.setSelected(e.key, {record:userInfo.info});
+                        return;
+                    }
                     pageStore.actions.setSelected(e.key);
                 }} 
                 selectedKeys={[pageStore.selected]} 

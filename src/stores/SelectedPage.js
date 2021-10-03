@@ -4,6 +4,7 @@ import Login from "../views/Login";
 import QuestionPage from "../views/QuestionPage";
 import QuestionsScreen from "../views/QuestionsScreen";
 import Registration from "../views/Registration";
+import Profile from "../views/EditProfile";
 
 const SelectedPage = () => {
     const items = {
@@ -11,7 +12,8 @@ const SelectedPage = () => {
         questions: <QuestionsScreen/>,
         question: <QuestionPage/>,
         register: <Registration/>,
-        login: <Login/>
+        login: <Login/>,
+        profileEdit: <Profile/>,
     }
     const self = {
     }
