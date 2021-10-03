@@ -33,6 +33,7 @@ const QuestionPage = (props) => {
         const copy = Object.assign({}, values);
         copy.user_id = userInfo.user_id;
         const result = await questions.actions.createQuestion(copy);
+        questions.actions.getQuestions();
         form.setFieldsValue(result[0])
     }
     return (
