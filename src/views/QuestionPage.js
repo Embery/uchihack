@@ -93,6 +93,7 @@ const QuestionPage = (props) => {
                 <Form.Item name="body" label="Вопрос" rules={[{ required: true }]}>
                     <TextArea rows={10}/>
                 </Form.Item>
+                <Form.Item wrapperCol={{ offset: 2, span: 18 }} className="question-form-footer-container">
                 {
                     (()=>{
                         if(!record) return (
@@ -100,18 +101,35 @@ const QuestionPage = (props) => {
                                 Задать вопрос
                             </Button>
                         )
-                        if(isMine) return (
+                        if(isMine && record.status_name === 'Новый') return (
                             <div>
-                                <Button type="primary" className="question-form-button">
+                                <Button type="primary" className="question-form-button"
+                                    onClick={async ()=>{
+                                        const values = form.getFieldsValue();
+                                        values.id = record.id;
+                                        const result = await questions.actions.setQuestionAnswered(values);
+                                        questions.actions.getQuestions();
+                                        form.setFieldsValue(result[0])
+                                    }}
+                                >
                                     Пометить отвеченным
                                 </Button>
-                                <Button className="question-form-button">
+                                <Button className="question-form-button"
+                                    onClick={async ()=>{
+                                        const values = form.getFieldsValue();
+                                        values.id = record.id;
+                                        const result = await questions.actions.setQuestionClosed(values);
+                                        questions.actions.getQuestions();
+                                        form.setFieldsValue(result[0])
+                                    }}
+                                >
                                     Закрыть вопрос
                                 </Button>
                             </div>
                         )
                     })()
                 }
+                </Form.Item>
             </Form>
         </fieldset>
     );

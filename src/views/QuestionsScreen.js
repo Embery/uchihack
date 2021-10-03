@@ -25,6 +25,10 @@ const QuestionsScreen = observer(props => {
             dataIndex: 'category_name'
         },
         {
+            title: 'Статус',
+            dataIndex: 'status_name',
+        },
+        {
             title: 'Создан',
             dataIndex: 'created',
             render: value => {

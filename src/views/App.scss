@@ -7,6 +7,11 @@
     h2{
         margin: 0 0 1em 0;
     }
+    .question-form-footer-container{
+        button + button {
+            margin: 0 0 0 1em;
+        }
+    }
 }
 .App > * {
     padding: .5em;

@@ -49,6 +49,24 @@ const Questions = (connection) => {
                 const responseObject = await connection.request(requestConfig);
                 const response = await responseObject.json();
                 return response;
+            }),
+            setQuestionAnswered: action(async (data) => {
+                const requestConfig = {
+                    url: `https://uchi-hack.herokuapp.com/question/close`,
+                    params: [data.id]
+                };
+                const responseObject = await connection.request(requestConfig);
+                const response = await responseObject.json();
+                return response;
+            }),
+            setQuestionClosed: action(async (data) => {
+                const requestConfig = {
+                    url: `https://uchi-hack.herokuapp.com/question/cancel`,
+                    params: [data.id]
+                };
+                const responseObject = await connection.request(requestConfig);
+                const response = await responseObject.json();
+                return response;
             })
         }
     };
