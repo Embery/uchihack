@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer } from "mobx-react";
-import { Form, Row, Col, Input, Button, DatePicker, TreeSelect, Checkbox, Collapse } from 'antd';
+import { Form, Row, Col, Input, Button, DatePicker, TreeSelect, Checkbox, Collapse, Select } from 'antd';
 
-
+const {Option} = Select;
 const {Panel} = Collapse;
 const QuestionsToolbar = observer((props) => {
     const {store, categoriesStore, uid} = props;
@@ -103,6 +103,13 @@ const QuestionsToolbar = observer((props) => {
                                 placeholder="Тема"
                                 treeDefaultExpandAll
                             />
+                        </Form.Item>
+                        <Form.Item label="Статус" name="status_id">
+                            <Select>
+                                <Option value={1}>Новый</Option>
+                                <Option value={2}>Закрыт</Option>
+                                <Option value={3}>Отклонен</Option>
+                            </Select>
                         </Form.Item>
                         <Button type="primary" htmlType="submit">
                             Искать
