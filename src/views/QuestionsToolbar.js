@@ -5,16 +5,25 @@ import { Form, Row, Col, Input, Button, DatePicker, TreeSelect, Checkbox, Collap
 
 const {Panel} = Collapse;
 const QuestionsToolbar = observer((props) => {
-    const {store, categoriesStore} = props;
+    const {store, categoriesStore, uid} = props;
     const [form] = Form.useForm();
     const {isLoaded, isLoading, categories} = categoriesStore;
     const {getCategories} = categoriesStore.actions;
     if(!isLoaded && !isLoading) getCategories();
     const formSuccess = (values, store) => {
+        store.clearFilters();
         Object.keys(values).forEach(key=>{
-            if(key!=="similar") {
-                if(values[key]) store.addFilter(key, values[key]);
-                else store.removeFilter(key);
+            switch (key){
+                case "similar":
+                    break;
+                case "mine":
+                    if(values[key]){
+                        store.addFilter('user_id', uid);
+                    }
+                    break;
+                default:
+                    if(values[key]) store.addFilter(key, values[key]);
+                    else store.removeFilter(key);
             }
         });
         if(!values.similar){
@@ -40,8 +49,19 @@ const QuestionsToolbar = observer((props) => {
                         <Form.Item name="name" label="Вопрос">
                             <Input placeholder="Вопрос" />
                         </Form.Item>
-                        <Form.Item name="similar" valuePropName="checked">
-                            <Checkbox >Похожие</Checkbox>
+                        <Form.Item>
+                            <Row>
+                                <Col>
+                                    <Form.Item name="similar" valuePropName="checked">
+                                        <Checkbox >Похожие</Checkbox>
+                                    </Form.Item>
+                                </Col>
+                                <Col style={{margin:"0 0 0 1em"}}>
+                                    <Form.Item name="mine" valuePropName="checked">
+                                        <Checkbox >Мои</Checkbox>
+                                    </Form.Item>
+                                </Col>
+                            </Row>
                         </Form.Item>
                         <Form.Item>
                             <Row>

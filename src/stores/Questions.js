@@ -11,6 +11,9 @@ const Questions = (connection) => {
         addFilter(property, value){
             self.filters[property] = value;
         },
+        clearFilters(){
+            self.filters = {};
+        },
         removeFilter(property){
             if(self.filters[property]) delete self.filters[property];
         },

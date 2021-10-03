@@ -110,7 +110,7 @@ const QuestionsScreen = observer(props => {
                     }
                 })()}
                 </h2>
-                <QuestionsToolbar store={questionsStore} categoriesStore={categories} />
+                <QuestionsToolbar store={questionsStore} categoriesStore={categories} uid={uid} />
             </div>}
         />
     );
