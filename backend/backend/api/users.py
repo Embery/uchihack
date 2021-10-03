@@ -5,6 +5,7 @@ from uuid import uuid4
 from datetime import datetime as dt
 
 from backend.utils.pg_storage import AsyncpgsaStorage
+from backend.utils.session import SessionKeeper
 from backend.middleware.middleware import LoggedRoute
 
 from backend.data_classes.users import *
@@ -17,7 +18,7 @@ router = APIRouter(route_class=LoggedRoute)
 @router.post("/user/login", response_model=ResponseLogin)
 async def login(request: Request, data: RequestLogin):
     storage: AsyncpgsaStorage = request.app.state.Storage
-    session_keeper = request.app.state.SessionKeeper
+    session_keeper: SessionKeeper = request.app.state.SessionKeeper
 
     query = users.select().where(users.c.login == data.params.login).\
         where(users.c.password == data.params.password)
@@ -27,12 +28,38 @@ async def login(request: Request, data: RequestLogin):
         raise RuntimeError("Invalid login or password")
 
     session_id = str(uuid4())
-    session_keeper.put(session_id)
 
     query = users.select().where(users.c.id == result[0]["id"])
-    result = {"session_id": session_id, **(await storage.fetch(query))[0]}
+    user = (await storage.fetch(query))[0]
+    result = {"session_id": session_id, **user}
+
+    session_keeper.put(session_id=session_id, info=user)
 
     return ResponseLogin(result=result)
+
+
+@router.post("/user/logout", response_model=ResponseLogout)
+async def logout(request: Request, data: RequestLogout):
+    session_keeper: SessionKeeper = request.app.state.SessionKeeper
+
+    for session_id in data.params:
+        session_keeper.delete(session_id)
+
+    return ResponseLogout()
+
+
+@router.post("/user/isLoggedIn", response_model=ResponseIsLoggedIn)
+async def is_logged_in(request: Request, data: RequestIsLoggedIn):
+    session_keeper: SessionKeeper = request.app.state.SessionKeeper
+
+    results = []
+
+    for session_id in data.params:
+        info = session_keeper.session_info(session_id)
+        if info:
+            results.append(info)
+
+    return ResponseIsLoggedIn(result=results)
 
 
 @router.post("/user/create", response_model=ResponseCreateUser)
