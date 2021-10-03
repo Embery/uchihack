@@ -90,8 +90,8 @@ class ResponseDeleteAnswer(ResponseSuccess):
 
 class ListAnswer(BaseList):
     body: Optional[str] = Field(description="Ответ")
-    question_id: Optional[str] = Field(description="Идентификатор вопроса")
-    user_id: Optional[str] = Field(description="Идентификатор пользователя")
+    question_id: Optional[int] = Field(description="Идентификатор вопроса")
+    user_id: Optional[int] = Field(description="Идентификатор пользователя")
 
 
 class RequestListAnswer(Request):
