@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from "mobx-react";
-import { Form, Row, Col, Input, Button, DatePicker, TreeSelect } from 'antd';
+import { Form, Row, Col, Input, Button, DatePicker, TreeSelect, Checkbox } from 'antd';
 
 const QuestionsToolbar = observer((props) => {
     const {store, categoriesStore} = props;
@@ -19,7 +19,8 @@ const QuestionsToolbar = observer((props) => {
             store.actions.getQuestions();
         }
         else {
-            //getExactQuestions()
+            //TODO - хранить страницу и pageSize в сторе чтобы вот этой дичи не было
+            store.actions.getQuestions(1, 25, false);
         }
     }
     return (
@@ -35,9 +36,14 @@ const QuestionsToolbar = observer((props) => {
                     <Input placeholder="№" />
                 </Form.Item>
             </Col>
-            <Col span={4}>
+            <Col span={3}>
                 <Form.Item name="name" label="Вопрос">
                     <Input placeholder="Вопрос" />
+                </Form.Item>
+            </Col>
+            <Col span={2}>
+                <Form.Item name="similar" valuePropName="checked">
+                    <Checkbox >Похожие</Checkbox>
                 </Form.Item>
             </Col>
             <Col span={3}>
@@ -61,7 +67,7 @@ const QuestionsToolbar = observer((props) => {
                 </Form.Item>
             </Col>
             <Col span={3}>
-                <Form.Item name="category_id">
+                <Form.Item name="category_id" label="Тема">
                     <TreeSelect
                         style={{ width: '100%' }}
                         dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
@@ -71,7 +77,7 @@ const QuestionsToolbar = observer((props) => {
                     />
                 </Form.Item>
             </Col>
-            <Col span={5} style={{textAlign:'right'}}>
+            <Col span={4} style={{textAlign:'right'}}>
                 <Button type="primary" htmlType="submit">
                     Искать
                 </Button>

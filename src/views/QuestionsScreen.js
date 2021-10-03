@@ -10,6 +10,7 @@ const QuestionsScreen = observer(props => {
     const categories = registry.getStore('categories');
     const {questions, total, isLoading, isLoaded} = questionsStore;
     const [page, setPage] = useState(1);
+    const uid = registry.getStore('user').user_id;
     const columns = [
         {
             title: '#',
@@ -89,7 +90,22 @@ const QuestionsScreen = observer(props => {
                 </Button>
             }
             title={() => <div>
-                <h2>Вопросы</h2>
+                <h2>Вопросы
+                {(()=>{
+                    if(uid){
+                        return (
+                            <Button type="primary"
+                                style={{ margin: '0 16px' }}
+                                onClick={() => {
+                                    registry.getStore('selectedPage').actions.setSelected('question')
+                                }}
+                            >
+                                Добавить
+                            </Button>
+                        )
+                    }
+                })()}
+                </h2>
                 <QuestionsToolbar store={questionsStore} categoriesStore={categories} />
             </div>}
         />

@@ -41,6 +41,15 @@ const Questions = (connection) => {
                 self.actions.setIsLoaded(true);
                 self.actions.setLoading(false);
             }),
+            createQuestion: action(async (data) => {
+                const requestConfig = {
+                    url: `https://uchi-hack.herokuapp.com/question/create`,
+                    params: [data]
+                };
+                const responseObject = await connection.request(requestConfig);
+                const response = await responseObject.json();
+                return response;
+            })
         }
     };
     return extendObservable(self, { questions: [], isLoading: false, isLoaded: false, total: 0});

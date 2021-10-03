@@ -7,6 +7,7 @@ import { observer } from "mobx-react";
 
 const registry = Registry();
 registry.actions.init();
+registry.getStore('user').actions.isLoggedIn();
 
 const App = observer(() => {
   const selectedPageStore = registry.getStore('selectedPage');
